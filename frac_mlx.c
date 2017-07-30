@@ -6,11 +6,19 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:15:58 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/26 00:18:10 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/07/29 21:15:16 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
+
+int			redraw(t_env *env)
+{
+	if (!ft_strcmp(env->name, "julia"))
+		start_julia(env, env->image, env->image->nbr);
+	//if (env->name == "mandelbrot")
+	return (0);
+}
 
 void		*initialize_nbr(void)
 {
@@ -30,6 +38,16 @@ void		*initialize_image(t_env *env)
 	return (ptr);
 }
 
+void		setting_points(t_nbr *nbr)
+{
+	nbr->cRe = .25;
+	nbr->cIm = .25;
+	nbr->transX = 0;
+	nbr->transY = 0;
+	nbr->zoom = .75;
+	nbr->iterations = 25;
+}
+
 void		*initialize_mlx(char *str)
 {
 	t_env	*env;
@@ -41,9 +59,11 @@ void		*initialize_mlx(char *str)
 	s = ft_strnjoin(s," x ", 1);
 	s = ft_strnjoin(s, ft_itoa(WIN_Y), 1);
 	env = (t_env*)malloc(sizeof(t_env));
+	env->name = ft_strdup(str);
 	env->mlx = mlx_init();
 	env->window = mlx_new_window(env->mlx, WIN_X, WIN_Y, s);
 	env->image = initialize_image(env);
 	env->image->nbr = initialize_nbr();
+	setting_points(env->image->nbr);
 	return (env);
 }

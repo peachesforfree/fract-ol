@@ -4,8 +4,13 @@
 
 void	new_frac(char *str)
 {
+	t_env *env;
+
 	if (!ft_strcmp(str, "julia"))
-		julia();
+	{
+		env = initialize_mlx("julia");
+		julia(env);
+	}
 	//else if (!ft_strcmp(str, "mandelbrot"))
 		//mandelbrot();
 }

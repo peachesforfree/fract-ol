@@ -6,7 +6,7 @@
 #    By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/21 15:02:02 by sbalcort          #+#    #+#              #
-#    Updated: 2017/07/25 23:11:22 by sbalcort         ###   ########.fr        #
+#    Updated: 2017/07/29 20:16:24 by sbalcort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIBS = libs/minilibx/libmlx.a\
 SRCS = frac_main.c\
 	   ft_error.c\
 	   frac_julia.c\
+	   frac_hooks.c\
 	   frac_mlx.c
 
 OBJS = $(SRCS:.c=.o)

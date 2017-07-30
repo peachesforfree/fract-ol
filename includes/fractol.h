@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 14:59:01 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/26 17:33:39 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/07/29 21:36:54 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # include <unistd.h>
 # include <math.h>
+# include <stdio.h>
 
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx/mlx.h"
 
-# define WIN_X 1500
-# define WIN_Y 100
+# define WIN_X 1000
+# define WIN_Y 1000
 
 typedef struct	s_nbr
 {
@@ -51,6 +52,7 @@ typedef struct	s_env
 {
 	void		*mlx;
 	void		*window;
+	char		*name;
 	int			color;
 	int			map_x;
 	int			map_y;
@@ -60,7 +62,14 @@ typedef struct	s_env
 void			ft_err_memory(char *str);
 int 			ft_err_usage(int argc, char **argv);
 int				ft_err_input(char *str);
-void			julia(void);
+void			julia(t_env *env);
 void			*initialize_mlx(char *str);
 void			*initialize_image(t_env *env);
+void			hooks(t_env *env);
+int				motion_hook(int x, int y,t_env *env);
+//void			key_hook(t_env *env);
+int				exit_hook(t_env *env);
+void			start_julia(t_env *env, t_pic *image, t_nbr *nbr);
+int				redraw(t_env *env);
+void			setting_points(t_nbr *nbr);
 #endif
