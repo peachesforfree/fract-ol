@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 14:59:01 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/29 21:36:54 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/07/31 19:15:31 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "../libs/minilibx/mlx.h"
 
 # define WIN_X 1000
-# define WIN_Y 1000
-
+# define WIN_Y 800
+# define ENDN 1
 typedef struct	s_nbr
 {
 	double		cRe;
@@ -40,10 +40,11 @@ typedef struct	s_nbr
 
 typedef struct	s_pic
 {
-	void		*image;
+	void		*img_ptr;
+	int			*data;
+	int			win_w;
 	size_t		*pixel_cnt;
 	int			bits_per_pixel;
-	int			size_line;
 	int			endian;
 	t_nbr		*nbr;
 }				t_pic;

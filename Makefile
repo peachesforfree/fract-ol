@@ -6,13 +6,13 @@
 #    By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/21 15:02:02 by sbalcort          #+#    #+#              #
-#    Updated: 2017/07/29 20:16:24 by sbalcort         ###   ########.fr        #
+#    Updated: 2017/07/31 14:23:59 by sbalcort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 
 LIBS = libs/minilibx/libmlx.a\
 	   libs/libft/libft.a

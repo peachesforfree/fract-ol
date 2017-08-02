@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:15:58 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/29 21:15:16 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/07/31 19:17:24 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void		*initialize_image(t_env *env)
 	t_pic	*ptr;
 
 	ptr = (t_pic*)malloc(sizeof(t_pic));
-	ptr->image = mlx_new_image(env->mlx, WIN_X, WIN_Y);
-	ptr->pixel_cnt = (size_t*)mlx_get_data_addr(ptr->image, &ptr->bits_per_pixel, &ptr->size_line, &ptr->endian);
+	ptr->img_ptr = mlx_new_image(env->mlx, WIN_X, WIN_Y);
+	//ptr->bits_per_pixel = BIT_PER_PX;
+	ptr->endian = ENDN;
+	ptr->win_w = WIN_X;
+	ptr->data = (int*)mlx_get_data_addr(ptr->img_ptr, &ptr->bits_per_pixel, &ptr->win_w, &ptr->endian);
 	return (ptr);
 }
 

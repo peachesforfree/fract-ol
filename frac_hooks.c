@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 18:11:54 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/29 21:36:02 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/07/31 12:05:40 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ int		motion_hook(int x, int y, t_env *env)
 		env->image->nbr->cIm = ((WIN_Y / 2) - yy) / (WIN_Y / 2);
 	if (yy >= (WIN_Y / 2))
 		env->image->nbr->cIm = -((yy - (WIN_X / 2)) / (WIN_X / 2));
-	printf("(%f, %f) [%f, %f]", xx, yy, env->image->nbr->cRe, env->image->nbr->cRe);
 	redraw(env);
 	return (0);
 }
 
 void	hooks(t_env *env)
 {
-	mlx_do_key_autorepeaton(env->mlx);
+	//mlx_do_key_autorepeaton(env->mlx);
 	mlx_expose_hook(env->window, &redraw, env);
 	mlx_hook(env->window, 6, 0, motion_hook, env);
 	//mlx_mouse_hook(env->window, &mouse_hooks, env);
