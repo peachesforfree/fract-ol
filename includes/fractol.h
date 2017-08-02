@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 14:59:01 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/31 19:15:31 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/02 12:10:42 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx/mlx.h"
 
-# define WIN_X 1000
-# define WIN_Y 800
-# define ENDN 1
+# define WIN_X 2000
+# define WIN_Y 1500
+# define ENDN 0
 typedef struct	s_nbr
 {
 	double		cRe;

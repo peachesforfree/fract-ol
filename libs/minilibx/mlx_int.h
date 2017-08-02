@@ -9,7 +9,7 @@
 
 #define	MAX_EVENT	32
 #define MAX_PIXEL_NB	200000
-#define UNIQ_BPP	4
+#define UNIQ_BPP	16
 
 #define FONT_WIDTH	10
 #define	FONT_HEIGHT	20

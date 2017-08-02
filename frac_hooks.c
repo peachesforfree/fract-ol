@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 18:11:54 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/31 12:05:40 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/02 12:09:52 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		motion_hook(int x, int y, t_env *env)
 		env->image->nbr->cIm = ((WIN_Y / 2) - yy) / (WIN_Y / 2);
 	if (yy >= (WIN_Y / 2))
 		env->image->nbr->cIm = -((yy - (WIN_X / 2)) / (WIN_X / 2));
-	redraw(env);
+	julia(env);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:02:42 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/07/31 19:19:49 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/02 12:09:14 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 			nbr->color = 16711680 + (i * 14080); 
 			if (i == nbr->iterations)
 				nbr->color = 0;
-			image->data[(int)x + ((int)y * image->win_w)] = nbr->color;
+			image->data[(int)(x + (y * WIN_X))] = nbr->color;
 			//mlx_pixel_put(env->mlx, env->window, x, y, nbr->color);
 			nbr->color = 16711680;
 			i = -1;
