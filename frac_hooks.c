@@ -18,6 +18,24 @@ int		exit_hook(t_env *env)
 	exit(0);
 }
 
+int		key_hook(int keycode, t_env *env)
+{
+	double zoom;
+	zoom = env->image->nbr->zoom;
+	if (keycode == 125)
+		env->image->nbr->transY += .02 + (.001 / zoom);
+	if (keycode == 126)
+		env->image->nbr->transY -= .02 + (.001 / zoom);
+	if (keycode == 124)
+		env->image->nbr->transX += .02 + (.001 / zoom);
+	if (keycode == 123)
+		env->image->nbr->transX -= .02 + (.001 / zoom);
+	if (keycode == 53)
+		exit_hook(env);
+	julia (env);
+	return (0);
+}
+
 int		motion_hook(int x, int y, t_env *env)
 {
 	float	xx;
@@ -37,14 +55,28 @@ int		motion_hook(int x, int y, t_env *env)
 	return (0);
 }
 
+int	mouse_hooks(int button, int x, int y, t_env *env)
+{
+	int xx;
+	int yy;
+
+	xx = x; yy = y;
+	if (button == 5)
+		env->image->nbr->zoom += .05;
+	if (button == 4)
+		env->image->nbr->zoom -= .05;
+	julia(env);
+	return (0);
+}
+
 void	hooks(t_env *env)
 {
 	//mlx_do_key_autorepeaton(env->mlx);
 	mlx_expose_hook(env->window, &redraw, env);
 	mlx_hook(env->window, 6, 0, motion_hook, env);
-	//mlx_mouse_hook(env->window, &mouse_hooks, env);
-	//mlx_hook(env->window, 2, 0, &key_hook, env);
+	mlx_mouse_hook(env->window, &mouse_hooks, env);
+	mlx_hook(env->window, 2, 0, &key_hook, env);
 	mlx_hook(env->window, 17, 0, exit_hook, env);
-
+	//julia(env);
 	mlx_loop(env->mlx);
 }

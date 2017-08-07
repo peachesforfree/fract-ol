@@ -16,14 +16,18 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 {
 	t_env *derp;
 	derp = env;
+	int *buffer;
+	
+	buffer = image->data;
 	int i = 0;
-	float	y = -1;
-	float	x = -1;
+	int	y = -1;
+	int	x = -1;
+	
 	while (++y <= WIN_Y)
 	{
 		while (++x <= WIN_X)
 		{
-			nbr->newRe = (1.5 * (x - WIN_X / 2)) / (0.5 * nbr->zoom * WIN_X) + nbr->transX;
+			nbr->newRe = (x - WIN_X / 2) / (0.5 * nbr->zoom * WIN_X) + nbr->transX;
 			nbr->newIm = (y - WIN_Y / 2) / (0.5 * nbr->zoom * WIN_Y) + nbr->transY;			
 			while (++i < nbr->iterations)
 			{
@@ -37,7 +41,8 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 			nbr->color = 16711680 + (i * 14080); 
 			if (i == nbr->iterations)
 				nbr->color = 0;
-			image->data[(int)(x + (y * WIN_X))] = nbr->color;
+			buffer[((int)x + ((int)y * (int)WIN_X))] = (int)nbr->color;
+			//image->data[((int)x + ((int)y * (int)WIN_X))] = (int)nbr->color;
 			//mlx_pixel_put(env->mlx, env->window, x, y, nbr->color);
 			nbr->color = 16711680;
 			i = -1;
@@ -53,6 +58,7 @@ void		julia(t_env *env)
 	
 	//env = initialize_mlx("julia");
 	redraw(env);
+	put_directions(env);
 	mlx_put_image_to_window(env->mlx, env->window, env->image->img_ptr, 0, 0);
 	hooks(env);
 	//mlx_loop(env->mlx);

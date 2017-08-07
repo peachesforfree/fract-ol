@@ -20,6 +20,14 @@ int			redraw(t_env *env)
 	return (0);
 }
 
+void		put_directions(t_env *env)
+{
+	mlx_string_put(env->mlx, env->window, 20, 20, 0xFFFFFF,"Zoom: scroll up or down");
+	mlx_string_put(env->mlx, env->window, 20, 40, 0XFFFFFF,"Shift: Use arrow keys");
+	mlx_string_put(env->mlx, env->window, 20, 60, 0xFFFFFF,"Space Bar: reset to zero");
+	mlx_string_put(env->mlx, env->window, 20, 80, 0xFFFFFF,"Change colors: Click");
+}
+
 void		*initialize_nbr(void)
 {
 	t_nbr *nbr;
