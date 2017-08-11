@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:02:42 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/08 15:32:13 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/11 13:39:09 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 	t_env *derp;
 	derp = env;
 	
-	int i = 0;
+	nbr->iterations = 0;
 	int	y = -1;
 	int	x = -1;
 	while (++y <= WIN_Y)
@@ -26,7 +26,7 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 		{
 			nbr->newRe = (x - WIN_X / 2) / (0.5 * nbr->zoom * WIN_X) + nbr->transX;
 			nbr->newIm = (y - WIN_Y / 2) / (0.5 * nbr->zoom * WIN_Y) + nbr->transY;			
-			while (++i < nbr->iterations)
+			while (++nbr->iterations < nbr->max_iterations)
 			{
 				nbr->oldRe = nbr->newRe;
 				nbr->oldIm = nbr->newIm;
@@ -35,12 +35,14 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 				if (((nbr->newRe * nbr->newRe) + (nbr->newIm * nbr->newIm)) > 4)
 					break;
 			}
-			nbr->color = 16711680 + (i * 14080); 
-			if (i == nbr->iterations)
-				nbr->color = 0;
-			image->data[x + ((y -1) * WIN_X)] = nbr->color;
-			nbr->color = 16711680;
-			i = -1;
+			put_pixel(x, y, image);
+			//nbr->color = 16711680 + (nbr->iterations * 14080); 
+			//if (nbr->iterations == nbr->max_iterations)
+			//	nbr->color = 0;
+			//image->data[x + ((y -1) * WIN_X)] = nbr->color;
+			//nbr->color = 16711680;
+			//nbr->color = -1;
+			nbr->iterations = 0;
 		}
 		x = 0;
 	}

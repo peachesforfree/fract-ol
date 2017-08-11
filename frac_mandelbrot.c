@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 13:12:20 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/08 21:45:38 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/11 13:01:17 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,28 @@ void		set_complex_number(t_nbr *nbr,int x,int y)
 	nbr->cRe = (y - WIN_Y / 2) / (0.5 * nbr->zoom * WIN_Y) + nbr->transX;
 }
 
-void		put_pixel(int x, int y, int color, t_pic *image)
+void		put_pixel(int x, int y, t_pic *image)
 {
 	int place;
+	int color;
 
-	color = 16711680 + (color * 14080);
-	if (color == image->nbr->iterations)
+	if (image->nbr->color_rot != 0)
+		image->nbr->color_rot += 1;
+	color = 16711680 + (image->nbr->iterations * 14080) + image->nbr->color_rot;
+	if (image->nbr->iterations == image->nbr->max_iterations)
 		color = 0;
 	place = x + ((y - 1) * WIN_X);
 	image->data[place] = color;
+}
+
+void		debugging(t_env *env)
+{
+	int x = -1;
+	int y = -1;
+	while (++x < WIN_X)
+			put_pixel(x, (WIN_Y / 2), env->image);
+	while (++y < WIN_Y)
+			put_pixel((WIN_X / 2), y, env->image);	
 }
 
 void		start_mandelbrot(t_env *env, t_pic *image, t_nbr *nbr)
@@ -36,12 +49,11 @@ void		start_mandelbrot(t_env *env, t_pic *image, t_nbr *nbr)
 	double y;
 	int		row;
 	int		col;
-	int i;
 	
 	dump = (void*)env;
 	x = -1;
 	y = -1;
-	i = 0;
+	nbr->iterations = 0;
 	row = 0;
 	col = 0;
 	while (++row < WIN_Y)
@@ -51,18 +63,19 @@ void		start_mandelbrot(t_env *env, t_pic *image, t_nbr *nbr)
 			set_complex_number(nbr, col, row);
 			x = 0;
 			y = 0;	
-			while (((x * x) + (y * y)) < 4 && i < nbr->iterations)
+			while (((x * x) + (y * y)) < 4 && nbr->iterations < nbr->max_iterations)
 			{	
 				temp = (x * x) - (y * y) + nbr->cRe;
 				y = 2 * x * y + nbr->cIm;
 				x = temp;
-				i++;
+				nbr->iterations++;
 			}
-			put_pixel(row, col, i, image);
-			i = 0;
+			put_pixel(row, col, image);
+			nbr->iterations = 0;
 		}
 		col = 0;
 	}
+	debugging(env);
 }
 
 void		mandelbrot(t_env *env)

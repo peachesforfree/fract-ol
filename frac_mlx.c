@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:15:58 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/08 18:39:19 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/11 12:50:44 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void		setting_points(t_nbr *nbr)
 	nbr->cIm = -.1;
 	nbr->transX = 0;
 	nbr->transY = 0;
-	nbr->zoom = .75;
-	nbr->iterations = 50;
+	nbr->zoom = .5;
+	nbr->max_iterations = 50;
+	nbr->color_rot = 0;
 }
 
 void		*initialize_mlx(char *str)
