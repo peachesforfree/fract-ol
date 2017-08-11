@@ -11,8 +11,11 @@ void	new_frac(char *str)
 		env = initialize_mlx("julia");
 		julia(env);
 	}
-	//else if (!ft_strcmp(str, "mandelbrot"))
-		//mandelbrot();
+	else if (!ft_strcmp(str, "mandelbrot"))
+	{
+		env = initialize_mlx("mandelbrot");
+		mandelbrot(env);
+	}
 }
 
 int		main(int argc, char **argv)

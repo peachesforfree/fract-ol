@@ -6,7 +6,7 @@
 #    By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/21 15:02:02 by sbalcort          #+#    #+#              #
-#    Updated: 2017/07/31 14:23:59 by sbalcort         ###   ########.fr        #
+#    Updated: 2017/08/07 15:01:52 by sbalcort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = frac_main.c\
 	   ft_error.c\
 	   frac_julia.c\
 	   frac_hooks.c\
+	   frac_mandelbrot.c\
 	   frac_mlx.c
 
 OBJS = $(SRCS:.c=.o)

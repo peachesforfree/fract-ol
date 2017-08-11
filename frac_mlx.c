@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:15:58 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/02 11:58:24 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/08 18:39:19 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int			redraw(t_env *env)
 {
 	if (!ft_strcmp(env->name, "julia"))
-		start_julia(env, env->image, env->image->nbr);
-	//if (env->name == "mandelbrot")
+		julia(env);
+	if (!ft_strcmp(env->name, "mandelbrot"))
+		mandelbrot(env);
 	return (0);
 }
 
@@ -42,21 +43,18 @@ void		*initialize_image(t_env *env)
 
 	ptr = (t_pic*)malloc(sizeof(t_pic));
 	ptr->img_ptr = mlx_new_image(env->mlx, WIN_X, WIN_Y);
-	//ptr->bits_per_pixel = BIT_PER_PX;
-	ptr->endian = ENDN;
-	ptr->win_w = WIN_X;
 	ptr->data = (int*)mlx_get_data_addr(ptr->img_ptr, &ptr->bits_per_pixel, &ptr->win_w, &ptr->endian);
 	return (ptr);
 }
 
 void		setting_points(t_nbr *nbr)
 {
-	nbr->cRe = .25;
-	nbr->cIm = .25;
+	nbr->cRe = .1;
+	nbr->cIm = -.1;
 	nbr->transX = 0;
 	nbr->transY = 0;
 	nbr->zoom = .75;
-	nbr->iterations = 25;
+	nbr->iterations = 50;
 }
 
 void		*initialize_mlx(char *str)

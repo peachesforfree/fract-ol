@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:02:42 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/02 12:09:14 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:32:13 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 {
 	t_env *derp;
 	derp = env;
-	int *buffer;
 	
-	buffer = image->data;
 	int i = 0;
 	int	y = -1;
 	int	x = -1;
-	
 	while (++y <= WIN_Y)
 	{
 		while (++x <= WIN_X)
@@ -41,9 +38,7 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 			nbr->color = 16711680 + (i * 14080); 
 			if (i == nbr->iterations)
 				nbr->color = 0;
-			buffer[((int)x + ((int)y * (int)WIN_X))] = (int)nbr->color;
-			//image->data[((int)x + ((int)y * (int)WIN_X))] = (int)nbr->color;
-			//mlx_pixel_put(env->mlx, env->window, x, y, nbr->color);
+			image->data[x + ((y -1) * WIN_X)] = nbr->color;
 			nbr->color = 16711680;
 			i = -1;
 		}
@@ -54,12 +49,9 @@ void		start_julia(t_env *env, t_pic *image, t_nbr *nbr)
 
 void		julia(t_env *env)
 {
-	//t_env	*env;
-	
-	//env = initialize_mlx("julia");
-	redraw(env);
-	put_directions(env);
+	//redraw(env);
+	start_julia(env, env->image, env->image->nbr);
 	mlx_put_image_to_window(env->mlx, env->window, env->image->img_ptr, 0, 0);
+	put_directions(env);
 	hooks(env);
-	//mlx_loop(env->mlx);
 }
