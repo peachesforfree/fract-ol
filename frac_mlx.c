@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 17:15:58 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/11 12:50:44 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/22 10:43:16 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ int			redraw(t_env *env)
 		julia(env);
 	if (!ft_strcmp(env->name, "mandelbrot"))
 		mandelbrot(env);
+	if (!ft_strcmp(env->name, "ship"))
+		ship(env);
+	if (!ft_strcmp(env->name, "attractor"))
+		attractor(env);
+	if (!ft_strcmp(env->name, "mandel5"))
+		mandel5(env);
 	return (0);
 }
 
@@ -25,8 +31,8 @@ void		put_directions(t_env *env)
 {
 	mlx_string_put(env->mlx, env->window, 20, 20, 0xFFFFFF,"Zoom: scroll up or down");
 	mlx_string_put(env->mlx, env->window, 20, 40, 0XFFFFFF,"Shift: Use arrow keys");
-	mlx_string_put(env->mlx, env->window, 20, 60, 0xFFFFFF,"Space Bar: reset to zero");
-	mlx_string_put(env->mlx, env->window, 20, 80, 0xFFFFFF,"Change colors: Click");
+	mlx_string_put(env->mlx, env->window, 20, 60, 0xFFFFFF,"Space Bar: reset to zero and rotate color");
+	mlx_string_put(env->mlx, env->window, 20, 80, 0xFFFFFF,"Warning : potential seizures");
 }
 
 void		*initialize_nbr(void)
@@ -53,8 +59,8 @@ void		setting_points(t_nbr *nbr)
 	nbr->cIm = -.1;
 	nbr->transX = 0;
 	nbr->transY = 0;
-	nbr->zoom = .5;
-	nbr->max_iterations = 50;
+	nbr->zoom = 1;
+	nbr->max_iterations = 20;
 	nbr->color_rot = 0;
 }
 

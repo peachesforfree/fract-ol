@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 18:11:54 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/11 12:57:13 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/14 22:28:01 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		exit_hook(t_env *env)
 
 void	zero_out(t_env *env)
 {
-	env->image->nbr->zoom = .5;
+	env->image->nbr->zoom = 1;
 	env->image->nbr->transY = 0;
 	env->image->nbr->transX = 0;
 }
@@ -89,12 +89,14 @@ int		mouse_hooks(int button, int x, int y, t_env *env)
 {
 	if (button == 5)
 	{
-		env->image->nbr->zoom += (.05 * env->image->nbr->zoom);
+		//env->image->nbr->zoom += (.05 * env->image->nbr->zoom);
+		env->image->nbr->zoom *= 1.02;
 		recenter(x, y, env);
 	}	
 	if (button == 4)
 	{
-		env->image->nbr->zoom -= (.05 * env->image->nbr->zoom);
+		//env->image->nbr->zoom -= (.05 * env->image->nbr->zoom);
+		env->image->nbr->zoom *= .98;
 		recenter(x, y, env);
 	}
 	redraw(env);

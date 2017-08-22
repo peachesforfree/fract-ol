@@ -6,7 +6,7 @@
 /*   By: sbalcort <sbalcort@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 14:59:01 by sbalcort          #+#    #+#             */
-/*   Updated: 2017/08/11 13:37:08 by sbalcort         ###   ########.fr       */
+/*   Updated: 2017/08/18 15:24:53 by sbalcort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx/mlx.h"
 
-# define WIN_X 1000
-# define WIN_Y 1000
+# define WIN_X 700
+# define WIN_Y 700
 # define ENDN 0
 
 typedef struct	s_nbr
@@ -74,13 +74,16 @@ int			motion_hook(int x, int y,t_env *env);
 int			key_hook(int keycode, t_env *env);
 int				exit_hook(t_env *env);
 int			mouse_hooks(int button, int x, int y, t_env *env);
-void			start_julia(t_env *env, t_pic *image, t_nbr *nbr);
+void			start_julia(t_pic *image, t_nbr *nbr);
 int				redraw(t_env *env);
 void			setting_points(t_nbr *nbr);
 void			put_directions(t_env *env);
 void			mandelbrot(t_env *env);
-void			start_mandelbrot(t_env *env, t_pic *image, t_nbr *nbr);
+void			start_mandelbrot(t_pic *image, t_nbr *nbr);
 void			zero_out(t_env *env);
 void			recenter(int x, int y, t_env *env);
 void			put_pixel(int x, int y, t_pic *image);
+void			ship(t_env *env);
+void			attractor(t_env *env);
+void			mandel5(t_env *env);
 #endif
