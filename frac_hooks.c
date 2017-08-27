@@ -25,6 +25,17 @@ void	zero_out(t_env *env)
 	env->image->nbr->transX = 0;
 }
 
+void	change_iterations(t_nbr *nbr, int key)
+{
+	if (nbr->max_iterations > 0 && nbr->max_iterations <= nbr->global_max_iter)
+	{
+		if (key == 43)
+			nbr->max_iterations += 1;
+		if (key == 47)		
+			nbr->max_iterations -= 1;
+	}
+}
+
 int		key_hook(int keycode, t_env *env)
 {
 	double zoom;
@@ -37,14 +48,24 @@ int		key_hook(int keycode, t_env *env)
 		env->image->nbr->transX += .02 + (.001 / zoom);
 	if (keycode == 123)
 		env->image->nbr->transX -= .02 + (.001 / zoom);
-	if (keycode == 49)
+	if (keycode == 8)
 	{
 		if (env->image->nbr->color_rot == 0)
 			env->image->nbr->color_rot = 1;
 		else
 			env->image->nbr->color_rot = 0;
-		zero_out(env);
 	}
+	if (keycode == 49)
+	{
+		if (env->image->nbr->mouse == 1)
+			env->image->nbr->mouse = 0;
+		else	
+			env->image->nbr->mouse = 1;
+	}
+	if (keycode == 29)
+		zero_out(env);
+	if (keycode == 43 || keycode == 47)
+		change_iterations(env->image->nbr, keycode);
 	if (keycode == 53)
 		exit_hook(env);
 	redraw(env);
@@ -58,6 +79,8 @@ int		motion_hook(int x, int y, t_env *env)
 
 	xx = x;
 	yy = y;
+	if (env->image->nbr->mouse == 1)
+		return (0);	
 	if (xx < (WIN_X / 2))
 		env->image->nbr->cRe = -(((WIN_X / 2) - xx) / (WIN_X / 2));
 	if (xx >= (WIN_X / 2))
@@ -76,29 +99,23 @@ void	recenter(int x, int y, t_env *env)
 	nbr = env->image->nbr;
 
 	if (x >= (WIN_X / 2))
-		nbr->transX -= ((((WIN_X / 2) - (float)x) / (WIN_X / 2)) / fabs(nbr->zoom) / 10);
+		nbr->transX -= ((((WIN_X / 2) - (float)x) / (WIN_X / 2)) / fabs(nbr->zoom));
 	if (x < (WIN_X / 2))
-		nbr->transX += ((((float)x - (WIN_X / 2)) / (WIN_X / 2)) / fabs(nbr->zoom) / 10);
+		nbr->transX += ((((float)x - (WIN_X / 2)) / (WIN_X / 2)) / fabs(nbr->zoom));
 	if (y >= (WIN_Y / 2))	
-		nbr->transY += ((((float)y - (WIN_X / 2)) / (WIN_Y / 2)) / fabs(nbr->zoom) / 10);
+		nbr->transY += ((((float)y - (WIN_X / 2)) / (WIN_Y / 2)) / fabs(nbr->zoom));
 	if (y < (WIN_Y / 2))
-		nbr->transY -= ((((WIN_Y / 2) - (float)y) / (WIN_Y / 2)) / fabs(nbr->zoom) / 10);
+		nbr->transY -= ((((WIN_Y / 2) - (float)y) / (WIN_Y / 2)) / fabs(nbr->zoom));
 }
 
 int		mouse_hooks(int button, int x, int y, t_env *env)
 {
 	if (button == 5)
-	{
-		//env->image->nbr->zoom += (.05 * env->image->nbr->zoom);
 		env->image->nbr->zoom *= 1.02;
-		recenter(x, y, env);
-	}	
 	if (button == 4)
-	{
-		//env->image->nbr->zoom -= (.05 * env->image->nbr->zoom);
 		env->image->nbr->zoom *= .98;
+	if (button == 1)
 		recenter(x, y, env);
-	}
 	redraw(env);
 	return (0);
 }

@@ -84,10 +84,10 @@ SRCS = ft_atoi.c \
 OBJ = $(SRCS:%.c=%.o)
 
 $(NAME):
-	@$(CC) $(CFLAGS) $(SRCS)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo "Done"
+	$(CC) $(CFLAGS) $(SRCS)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+	echo "Done"
 
 all: $(NAME)
 

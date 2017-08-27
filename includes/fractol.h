@@ -20,8 +20,8 @@
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx/mlx.h"
 
-# define WIN_X 700
-# define WIN_Y 700
+# define WIN_X 1000
+# define WIN_Y 1000
 # define ENDN 0
 
 typedef struct	s_nbr
@@ -32,6 +32,7 @@ typedef struct	s_nbr
 	double		newIm;
 	double		oldRe;
 	double		oldIm;
+	int		global_max_iter;
 	int			max_iterations;
 	int			iterations;
 	double		zoom;
@@ -39,6 +40,7 @@ typedef struct	s_nbr
 	double		transY;
 	int			color;
 	int			color_rot;
+	int			mouse;
 }				t_nbr;
 
 typedef struct	s_pic

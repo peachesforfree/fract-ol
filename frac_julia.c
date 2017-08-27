@@ -21,8 +21,8 @@ void		start_julia(t_pic *image, t_nbr *nbr)
 	{
 		while (++x <= WIN_X)
 		{
-			nbr->newRe = (x - WIN_X / 2) / (0.5 * nbr->zoom * WIN_X) + nbr->transX;
-			nbr->newIm = (y - WIN_Y / 2) / (0.5 * nbr->zoom * WIN_Y) + nbr->transY;			
+			nbr->newRe = (x - WIN_X / 2) / (0.4 * nbr->zoom * WIN_X) + nbr->transX;
+			nbr->newIm = (y - WIN_Y / 2) / (0.4 * nbr->zoom * WIN_Y) + nbr->transY;			
 			while (++nbr->iterations < nbr->max_iterations && ((nbr->newRe * nbr->newRe) + (nbr->newIm * nbr->newIm) < 4))
 			{
 				nbr->oldRe = nbr->newRe;

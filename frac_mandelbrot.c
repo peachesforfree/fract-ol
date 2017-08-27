@@ -14,8 +14,8 @@
 
 void		set_complex_number(t_nbr *nbr,int x,int y)
 {
-	nbr->cIm = (x - WIN_X / 2) / (0.5 * nbr->zoom * WIN_X) + nbr->transY;
-	nbr->cRe = (y - WIN_Y / 2) / (0.5 * nbr->zoom * WIN_Y) + nbr->transX;
+	nbr->cIm = (x - WIN_X / 2) / (0.3 * nbr->zoom * WIN_X) + nbr->transY;
+	nbr->cRe = (y - WIN_Y / 2) / (0.3 * nbr->zoom * WIN_Y) + nbr->transX - .4;
 	nbr->oldRe = 0;
 	nbr->oldIm = 0;
 	nbr->iterations = 0;

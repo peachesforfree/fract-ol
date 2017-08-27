@@ -31,8 +31,10 @@ void		put_directions(t_env *env)
 {
 	mlx_string_put(env->mlx, env->window, 20, 20, 0xFFFFFF,"Zoom: scroll up or down");
 	mlx_string_put(env->mlx, env->window, 20, 40, 0XFFFFFF,"Shift: Use arrow keys");
-	mlx_string_put(env->mlx, env->window, 20, 60, 0xFFFFFF,"Space Bar: reset to zero and rotate color");
-	mlx_string_put(env->mlx, env->window, 20, 80, 0xFFFFFF,"Warning : potential seizures");
+	mlx_string_put(env->mlx, env->window, 20, 60, 0xFFFFFF,"Space Bar: pause mouse");
+	mlx_string_put(env->mlx, env->window, 20, 80, 0xFFFFFF,"< > : to change iterations");
+	mlx_string_put(env->mlx, env->window, 20, 100, 0xFFFFFF,"c : for color   0 : to recenter");
+	mlx_string_put(env->mlx, env->window, 20, 120, 0xFFFFFF,"Warning : potential seizures");
 }
 
 void		*initialize_nbr(void)
@@ -61,7 +63,9 @@ void		setting_points(t_nbr *nbr)
 	nbr->transY = 0;
 	nbr->zoom = 1;
 	nbr->max_iterations = 20;
+	nbr->global_max_iter = 200;
 	nbr->color_rot = 0;
+	nbr->mouse = 1;
 }
 
 void		*initialize_mlx(char *str)
